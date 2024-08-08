@@ -82,7 +82,7 @@ def do2ddyn(param_set1, start1, stop1, num_points1, dyn_param, dyn_value1,dyn_va
                 for i, parameter in enumerate(param_meas):
                     output[i][1] = parameter.get()
                 datasaver.add_result((param_set1, set_point1),
-                                     (dyn_param, dyn_set)
+                                     (dyn_param, dyn_set),
                                      (param_set2, set_point2),
                                      *output)
             param_set2.set(start2)
