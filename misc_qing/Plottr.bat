@@ -1,0 +1,1 @@
+call C:/Users/TUD210503/Anaconda3/Scripts/activate.bat C:/Users/TUD210503/Anaconda3/envs/qcodes && pythonw  C:/Users/TUD210503/Documents/Qcodes_misc/plottr-master/plottr-master/apps/inspectr.py

@@ -1,0 +1,1 @@
+start C:\ProgramData\Anaconda3\python.exe C:\ProgramData\Anaconda3\cwp.py C:\Users\TUD210595\AppData\Local\conda\conda\envs\qcodes "C:/Users/TUD210595/AppData/Local/conda/conda/envs/qcodes/python.exe" "C:/Users/TUD210595/AppData/Local/conda/conda/envs/qcodes/Scripts/jupyter-notebook-script.py" "M:/tnw/ns/qt/2D Topo"

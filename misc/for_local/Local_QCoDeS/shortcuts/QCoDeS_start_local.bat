@@ -1,0 +1,1 @@
+start C:\Users\TUD206951\Anaconda3\python.exe C:\Users\TUD206951\Anaconda3\cwp.py C:\Users\TUD206951\Anaconda3\envs\qcodes "C:/Users/TUD206951/Anaconda3/envs/qcodes/python.exe" "C:/Users/TUD206951/Anaconda3/envs/qcodes/Scripts/jupyter-notebook-script.py" "C:\Users\TUD206951\Documents"

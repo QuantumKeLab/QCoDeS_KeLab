@@ -1,0 +1,1 @@
+start C:\Users\TUD206951\Anaconda3\pythonw.exe C:\Users\TUD206951\Anaconda3\cwp.py C:\Users\TUD206951\Anaconda3\envs\qcodes "C:/Users/TUD206951/Anaconda3/envs/qcodes/Scripts/plottr-inspectr.exe"

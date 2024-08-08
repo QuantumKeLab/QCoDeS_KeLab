@@ -1,0 +1,1 @@
+call %LOCALAPPDATA%/Continuum/Anaconda3/Scripts/activate.bat %LOCALAPPDATA%/Continuum/Anaconda3/envs/qcodes && pythonw  D:/plottr-master/plottr-master/apps/inspectr.py
