@@ -1,0 +1,1 @@
+start %HOMEDRIVE%\Users\TUD208555\Anaconda3\python.exe %HOMEDRIVE%\Users\TUD208555\Anaconda3\cwp.py %HOMEDRIVE%\Users\TUD208555\Anaconda3\envs\qcodes "%HOMEDRIVE%/Users/TUD208555/Anaconda3/envs/qcodes/python.exe" "%HOMEDRIVE%/Users/TUD208555/Anaconda3/envs/qcodes/Scripts/jupyter-notebook-script.py"
