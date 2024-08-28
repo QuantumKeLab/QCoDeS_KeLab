@@ -40,9 +40,9 @@ for resource in resources:
             station.add_component(K2440)
             
         elif "SR860" in idn_string:
-            SR860 = SR860('SR860', resource)
-            station.add_component(SR860)
-            print(f"Added SR860 at {resource} to the station.")
+            SR860_1 = SR860('SR860', resource)
+            station.add_component(SR860_1)
+            print(f"Added SR860_1 at {resource} to the station.")
             
         elif "SMB100A" in idn_string:
             SMB100A = RohdeSchwarzSGS100A('SMB100A', resource)
@@ -74,7 +74,7 @@ if all(ping_results):
     for magnet in magnets:
         print(f"{magnet.name}, IP: {magnet._address}, Port: {magnet._port}")
     
-    magnet_x, magnet_y, magnet_z = magnets
+    magnet_z, magnet_y, magnet_x = magnets
 
     field_limit = [lambda x, y, z: x < 1 and y < 1 and z < 9]
 
