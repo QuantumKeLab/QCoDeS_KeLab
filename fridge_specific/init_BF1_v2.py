@@ -3,6 +3,7 @@ import socket
 import qcodes as qc
 from pprint import pprint
 from qcodes.instrument_drivers.stanford_research.SR860 import SR860
+from qcodes.instrument_drivers.Keithley.Keithley_2000 import Keithley2000
 from qcodes.instrument_drivers.Keithley.Keithley_2400 import Keithley2400
 from qcodes.instrument_drivers.tektronix.Keithley_6500 import Keithley_6500
 from qcodes.instrument_drivers.rohde_schwarz.SGS100A import RohdeSchwarzSGS100A
@@ -31,6 +32,11 @@ for resource in resources:
             DMM6500 = Keithley_6500('DMM6500', resource)
             station.add_component(DMM6500)
             print(f"Added Keithley DMM6500 at {resource} to the station.")
+
+        elif "KEITHLEY" in idn_string and "MODEL 2000" in idn_string:
+            K2000 = Keithley2000('K2000', resource)
+            station.add_component(K2000)
+            print(f"Added Keithley 2000 at {resource} to the station.")
             
         elif "KEITHLEY" in idn_string and "MODEL 2400" in idn_string:
             K2400 = Keithley2400('K2400', resource)
@@ -53,6 +59,9 @@ for resource in resources:
     except Exception as e:
         print(f"Error connecting to {resource}: {e}")
 
+
+ivvi = IVVI('ivvi', 'ASRL3::INSTR')
+station.add_component(ivvi)
 # 指定本地IP地址
 local_ip = '169.254.115.159'
 
