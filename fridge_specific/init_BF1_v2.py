@@ -56,28 +56,30 @@ for resource in resources:
             station.add_component(SMB100A)
             print(f"Added SGS100A at {resource} to the station.")
         # 檢查 ASRL3::INSTR 是否存在於資源清單中
-        elif 'ASRL3::INSTR' in resources:
-            try:
-                # 嘗試連接 ASRL3::INSTR
-                ivvi_device = rm.open_resource('ASRL3::INSTR')
-                ivvi_device.timeout = 5000
-                idn_response = ivvi_device.query('*IDN?')  # 嘗試發送 IDN 指令
-                print(f"IVVI Response: {idn_response}")
+        # elif 'ASRL3::INSTR' in resources:
+        #     try:
+        #         # 嘗試連接 ASRL3::INSTR
+        #         ivvi_device = rm.open_resource('ASRL3::INSTR')
+        #         ivvi_device.timeout = 10000
+        #         idn_response = ivvi_device.query('*IDN?')  # 嘗試發送 IDN 指令
+        #         print(f"IVVI Response: {idn_response}")
                 
-                # 如果 IVVI 有正確回應，則添加到 station
-                ivvi = IVVI('ivvi', 'ASRL3::INSTR')
-                station.add_component(ivvi)
-                print("Added IVVI at ASRL3::INSTR to the station.")
+        #         # 如果 IVVI 有正確回應，則添加到 station
+        #         ivvi = IVVI('ivvi', 'ASRL3::INSTR')
+        #         station.add_component(ivvi)
+        #         print("Added IVVI at ASRL3::INSTR to the station.")
                 
-            except Exception as e:
-                print(f"Error connecting to IVVI at ASRL3::INSTR: {e}")
-        else:
-            print("ASRL3::INSTR not found in resource list.")
+        #     except Exception as e:
+        #         print(f"Error connecting to IVVI at ASRL3::INSTR: {e}")
+        # else:
+        #     print("ASRL3::INSTR not found in resource list.")
         
     except Exception as e:
         print(f"Error connecting to {resource}: {e}")
 
-
+ivvi = IVVI('ivvi', 'ASRL3::INSTR')
+station.add_component(ivvi)
+print("Added IVVI at ASRL3::INSTR to the station.")
 # 指定本地IP地址
 local_ip = '169.254.115.159'
 
