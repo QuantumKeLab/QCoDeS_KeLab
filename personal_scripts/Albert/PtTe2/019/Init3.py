@@ -489,7 +489,7 @@ def plot_heatmaps(runid):
     
     # 添加標題和軸標籤
     fig1.update_layout(
-        title=f"#{runid} | {exp_name} | {sample_name}",
+        title=f"<b>#{runid}|{exp_name}|</b> {sample_name}",
         xaxis_title=f"{x_param} ({param_units.get(x_param, '')})",
         yaxis_title=f"{y_param} ({param_units.get(y_param, '')})"
     )
@@ -510,7 +510,7 @@ def plot_heatmaps(runid):
         
         # 添加標題和軸標籤
         fig2.update_layout(
-            title=f"#{runid}| {exp_name}(dV/dI) | {sample_name}",
+            title=f"<b>#{runid}|{exp_name}(dV/dI)|</b> {sample_name}",
             xaxis_title=f"{x_param} ({param_units.get(x_param, '')})",
             yaxis_title=f"{y_param} ({param_units.get(y_param, '')})"
         )
@@ -681,7 +681,7 @@ def plot_combined_iv_dvdi(runid):
     
     # 設置布局，包含兩個 y 軸
     fig.update_layout(
-        title=f'#{runid} | {exp_name} | {sample_name} | R<sub>fit</sub>: {R:.4f} Ω',
+        title=f'<b>#{runid}|{exp_name}|</b>{sample_name}|R<sub>fit</sub>: {R:.4f} Ω',
         xaxis_title=f"{x_param} ({param_units.get(x_param, '')})",
         yaxis_title=f"{y_param} ({param_units.get(y_param, '')})",
         yaxis2=dict(
