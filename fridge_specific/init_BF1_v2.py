@@ -94,19 +94,19 @@ def ping_address(ip, port):
         return False
 
 # 進行 ping 測試
-addresses = ['169.254.115.3', '169.254.115.2', '169.254.115.1']
+addresses = ['169.254.115.1', '169.254.115.2', '169.254.115.3']
 ping_results = [ping_address(ip, 7180) for ip in addresses]
 
 if all(ping_results):
-    magnets = [AMI430(name, address=ip, port=7180) for name, ip in zip("zyx", addresses)]
+    magnets = [AMI430(name, address=ip, port=7180) for name, ip in zip("xyz", addresses)]
     for magnet in magnets:
         print(f"{magnet.name}, IP: {magnet._address}, Port: {magnet._port}")
     
-    magnet_z, magnet_y, magnet_x = magnets
+    magnet_x, magnet_y, magnet_z = magnets
 
     field_limit = [lambda x, y, z: x < 1 and y < 1 and z < 9]
 
-    i3d = AMI430_3D("AMI430-3D", *magnets, field_limit=field_limit)
+    i3d = AMI430_3D("AMI430_3D", *magnets, field_limit=field_limit)
 
     for magnet in magnets + [i3d]:
         station.add_component(magnet)
