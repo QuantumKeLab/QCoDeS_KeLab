@@ -77,8 +77,8 @@ for resource in resources:
     except Exception as e:
         print(f"Error connecting to {resource}: {e}")
 
-# ivvi = IVVI('ivvi', 'ASRL3::INSTR')
-# station.add_component(ivvi)
+ivvi = IVVI('ivvi', 'ASRL3::INSTR')
+station.add_component(ivvi)
 print("Added IVVI at ASRL3::INSTR to the station.")
 # 指定本地IP地址
 local_ip = '169.254.115.159'
