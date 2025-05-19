@@ -2,12 +2,14 @@ import pyvisa
 import socket
 import qcodes as qc
 from pprint import pprint
+from qcodes.dataset import dond, LinSweep, ArraySweep
 from qcodes.instrument_drivers.stanford_research.SR860 import SR860
 from qcodes.instrument_drivers.Keithley.Keithley_2000 import Keithley2000
 from qcodes.instrument_drivers.Keithley.Keithley_2400 import Keithley2400
 from qcodes.instrument_drivers.tektronix.Keithley_6500 import Keithley_6500
 from qcodes.instrument_drivers.rohde_schwarz.SGS100A import RohdeSchwarzSGS100A
 from qcodes.instrument_drivers.american_magnetics.AMI430 import AMI430, AMI430_3D
+from qcodes.instrument_drivers.american_magnetics import AMIModel430, AMIModel4303D
 from qcodes_contrib_drivers.drivers.QuTech.IVVI import IVVI
 
 # 初始化站點
@@ -77,42 +79,42 @@ for resource in resources:
     except Exception as e:
         print(f"Error connecting to {resource}: {e}")
 
-# ivvi = IVVI('ivvi', 'ASRL3::INSTR')
-# station.add_component(ivvi)
-# print("Added IVVI at ASRL3::INSTR to the station.")
+ivvi = IVVI('ivvi', 'ASRL3::INSTR')
+station.add_component(ivvi)
+print("Added IVVI at ASRL3::INSTR to the station.")
 # 指定本地IP地址
-# local_ip = '169.254.115.159'
+local_ip = '169.254.115.159'
 
-# def ping_address(ip, port):
-#     try:
-#         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-#             s.bind((local_ip, 0))  # 0表示自動選擇一個可用的本地端口
-#             s.connect((ip, port))
-#         return True
-#     except Exception as e:
-#         print(f"Failed to ping {ip}: {e}")
-#         return False
+def ping_address(ip, port):
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.bind((local_ip, 0))  # 0表示自動選擇一個可用的本地端口
+            s.connect((ip, port))
+        return True
+    except Exception as e:
+        print(f"Failed to ping {ip}: {e}")
+        return False
 
-# # 進行 ping 測試
-# addresses = ['169.254.115.1', '169.254.115.2', '169.254.115.3']
-# ping_results = [ping_address(ip, 7180) for ip in addresses]
+# 進行 ping 測試
+addresses = ['169.254.115.1', '169.254.115.2', '169.254.115.3']
+ping_results = [ping_address(ip, 7180) for ip in addresses]
 
-# if all(ping_results):
-#     magnets = [AMI430(name, address=ip, port=7180) for name, ip in zip("xyz", addresses)]
-#     for magnet in magnets:
-#         print(f"{magnet.name}, IP: {magnet._address}, Port: {magnet._port}")
+if all(ping_results):
+    magnets = [AMIModel430(name, address=ip, port=7180) for name, ip in zip("xyz", addresses)]
+    for magnet in magnets:
+        print(f"{magnet.name}, IP: {magnet._address}, Port: {magnet._port}")
     
-#     magnet_x, magnet_y, magnet_z = magnets
+    magnet_x, magnet_y, magnet_z = magnets
 
-#     field_limit = [lambda x, y, z: x < 1 and y < 1 and z < 9]
+    field_limit = [lambda x, y, z: x < 1 and y < 1 and z < 9]
 
-#     i3d = AMI430_3D("AMI430_3D", *magnets, field_limit=field_limit)
+    i3d = AMIModel4303D("AMIModel4303D", *magnets, field_limit=field_limit)
 
-#     for magnet in magnets + [i3d]:
-#         station.add_component(magnet)
-#         print(f"Added {magnet.name} to the station.")
-# else:
-#     print("One or more pings failed, cannot establish connection to all magnets.")
+    for magnet in magnets + [i3d]:
+        station.add_component(magnet)
+        print(f"Added {magnet.name} to the station.")
+else:
+    print("One or more pings failed, cannot establish connection to all magnets.")
 
 # 打印站點列表
 print('\nStation list:')
