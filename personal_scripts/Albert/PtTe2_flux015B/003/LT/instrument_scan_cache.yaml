@@ -1,0 +1,4 @@
+instruments:
+- idn: KEITHLEY INSTRUMENTS,MODEL DMM6500,04518181,1.7.7b
+  resource: GPIB0::7::INSTR
+timestamp: 1747654261.0538154

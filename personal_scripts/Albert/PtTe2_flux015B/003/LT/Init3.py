@@ -821,7 +821,8 @@ def perform_linear_fit(df, x_param, y_param):
     fit = np.polyfit(df[x_param], df[y_param], 1)
     return fit[0], fit[1]
 
-def analyze_iv_curve(df, x_param, y_param, dvdi_param='dV_dI'):
+def analyze_iv_curve(df, x_param, y_param, dvdi_param='dV_dI', i_bar=125e-6):
+    
     """
     Analyze the IV curve to detect critical currents and calculate resistances.
     
@@ -837,6 +838,8 @@ def analyze_iv_curve(df, x_param, y_param, dvdi_param='dV_dI'):
     # Compute dV/dI if not present
     if dvdi_param not in df.columns:
         df[dvdi_param] = np.gradient(df[y_param], df[x_param])
+    # Filter out df[x_param] < filter bar values
+    df = df[df[x_param] < i_bar]
     
     # Sort the DataFrame by x_param for consistent analysis
     df = df.sort_values(by=x_param).reset_index(drop=True)
@@ -1066,7 +1069,7 @@ def plot_heatmaps(runid):
         fig2.write_image(f"{runid}d.png")
     fig3.show()
     fig3.write_image(f"{runid}Ic.png")
-    return fig1, fig2, fig3
+    return fig1, fig2, fig3, ic_df
 
 def get_snapshot_value(dataset, path):
     """

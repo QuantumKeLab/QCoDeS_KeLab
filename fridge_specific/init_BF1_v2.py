@@ -110,6 +110,7 @@ if all(ping_results):
 
     for magnet in magnets + [i3d]:
         station.add_component(magnet)
+        station.add_component(i3d)
         print(f"Added {magnet.name} to the station.")
 else:
     print("One or more pings failed, cannot establish connection to all magnets.")
