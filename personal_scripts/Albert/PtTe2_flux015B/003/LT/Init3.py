@@ -837,7 +837,11 @@ def analyze_iv_curve(df, x_param, y_param, dvdi_param='dV_dI', i_bar=125e-6):
     """
     # Compute dV/dI if not present
     if dvdi_param not in df.columns:
+        import warnings
+        warnings.filterwarnings('ignore', category=RuntimeWarning)
         df[dvdi_param] = np.gradient(df[y_param], df[x_param])
+        warnings.filterwarnings('default', category=RuntimeWarning) 
+
     # Filter out df[x_param] < filter bar values
     df = df[df[x_param] < i_bar]
     

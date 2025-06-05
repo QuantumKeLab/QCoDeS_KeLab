@@ -1,0 +1,13 @@
+pint
+numpy
+pyppt
+pandas
+matplotlib
+plotly
+pdf2image
+tqdm
+scipy
+qcodes
+ipython
+nbformat
+kaleido
